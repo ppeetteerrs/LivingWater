@@ -1,0 +1,15 @@
+page-occasions {
+  button.item {
+    background: none;
+    border: none !important;
+    color: whitesmoke;//rgb(39, 39, 39);
+    font-weight: 500;
+    &.activated {
+      background: none;
+      opacity: 0.3;
+    }
+  }
+  ion-searchbar {
+    border: none !important;
+  }
+}

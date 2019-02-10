@@ -1,0 +1,62 @@
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.11.0"
+require 'xcodeproj'
+
+default_platform(:ios)
+
+platform :ios do
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+    lane :beta do
+      # Fetch and Create Profiles
+      match
+
+      # Retrieve App Name and ID from environment
+      name = ENV['APP_NAME']
+      app_id = ENV['APP_ID']
+      team_id = ENV['TEAM_ID']
+
+      xcodeprojpath = "platforms/ios/"+name+".xcodeproj"
+
+      upgrade_super_old_xcode_project(path: xcodeprojpath, use_automatic_signing: false, team_id: team_id)
+
+      # Update Code Signing
+      automatic_code_signing(path: xcodeprojpath, use_automatic_signing: false, team_id: team_id)
+
+      # Patch Project Settings
+      proj = Xcodeproj::Project.open("../" + xcodeprojpath)
+
+      proj.build_configurations.each do |item|
+          item.build_settings['DEVELOPMENT_TEAM'] = team_id
+          item.build_settings['CODE_SIGN_IDENTITY[sdk=iphoneos*]'] = "iPhone Developer"
+          item.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = "match AppStore " + app_id
+          # item.build_settings['CURRENT_PROJECT_VERSION'] = "1.0.0"
+      end
+
+      proj.recreate_user_schemes
+      proj.save
+      # End of Patching Project Settings
+
+      increment_build_number(
+        build_number: latest_testflight_build_number(app_identifier: ENV["APP_ID"]) + 1,
+        xcodeproj: xcodeprojpath
+      )
+
+      # Build the IPA
+      gym
+
+      # Upload the IPA to Testflight
+      testflight(
+         skip_waiting_for_build_processing: true,
+         ipa: "build/"+name+".ipa"
+      )
+  end
+
+end
+
+platform :android do
+  lane :alpha do
+    upload_to_play_store(track: 'alpha', apk: ENV['PROJECT_ROOT_DIR'] + 'build/android_output.apk')
+  end
+end

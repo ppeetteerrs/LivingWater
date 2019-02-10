@@ -1,0 +1,113 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title style="text-align: center">VERSES</ion-title>
+    <ion-buttons end>
+      <button *ngFor="let version of bible_versions" ion-button [ngClass]="version.version_name == selected_version_name ? 'active': 'inactive'"
+        (click)="chooseVersion(version.version_name)" outline>
+        {{version.display_title}}
+      </button>
+      <button ion-button item-end clear color="secondary" (click)="addVerse()">
+        Add Verse
+      </button>
+      <button ion-button item-end clear color="danger" (click)="removeVersePrompt()">
+        Remove Verse
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <form (ngSubmit)="searchVerse(search_input)">
+        <ion-searchbar name="search_input_field" type="text" placeholder="Verse Location" [(ngModel)]="search_input"></ion-searchbar>
+      </form>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-grid *ngIf="verse_record != null">
+    <ion-row class="location-row">
+      <ion-col>
+        <div>
+          <b>{{verse_record.location}}</b>
+          <button ion-button icon-only item-end clear color="primary" (click)="showEditLocationPrompt(verse_record.location)">
+            <ion-icon name="open"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="text-row">
+      <ion-col>
+        <p>
+          <i [innerHTML]="verse_record.parsed_text[selected_version_name]"></i>
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row class="keyword-level-row">
+      <ion-col>
+        <div>
+          <b>Level 1</b>
+          <button ion-button icon-only item-end clear color="secondary" (click)="addKeyword(1)">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <b>Level 2</b>
+          <button ion-button icon-only item-end clear color="secondary" (click)="addKeyword(2)">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <b>Level 3</b>
+          <button ion-button icon-only item-end clear color="secondary" (click)="addKeyword(3)">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="keywords-row">
+      <ion-col>
+        <div *ngFor="let l1_keyword of verse_record.l1">
+          <i>{{l1_keyword}}</i>
+          <button ion-button icon-only item-end clear color="primary" (click)="editKeyword(l1_keyword, 1)">
+            <ion-icon name="open"></ion-icon>
+          </button>
+          <button ion-button icon-only item-end clear color="danger" (click)="showDeleteKeywordPrompt(l1_keyword, 1)">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div *ngFor="let l2_keyword of verse_record.l2">
+          <i>{{l2_keyword}}</i>
+          <button ion-button icon-only item-end clear color="primary" (click)="editKeyword(l2_keyword, 2)">
+            <ion-icon name="open"></ion-icon>
+          </button>
+          <button ion-button icon-only item-end clear color="danger" (click)="showDeleteKeywordPrompt(l2_keyword, 2)">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div *ngFor="let l3_keyword of verse_record.l3">
+          <i>{{l3_keyword}}</i>
+          <button ion-button icon-only item-end clear color="primary" (click)="editKeyword(l3_keyword, 3)">
+            <ion-icon name="open"></ion-icon>
+          </button>
+          <button ion-button icon-only item-end clear color="danger" (click)="showDeleteKeywordPrompt(l3_keyword, 3)">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

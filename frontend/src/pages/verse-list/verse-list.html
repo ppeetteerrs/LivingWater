@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{display_title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button [ngClass]="chinese ? 'inactive': 'active'" (click)="toggleChinese(false)" outline>
+        Eng
+      </button>
+      <button ion-button [ngClass]="chinese ? 'active' : 'inactive'" (click)="toggleChinese(true)" outline>
+        中
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <verse-card *ngFor="let data_item of display_data" [verse-item]="data_item">
+
+  </verse-card>
+</ion-content>

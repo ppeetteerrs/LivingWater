@@ -1,0 +1,27 @@
+page-add-verse {
+  form {
+    display: flex;
+    justify-content: center;
+    padding: inherit;
+    margin: 0px;
+    align-items: flex-end;
+    width: 100%;
+    ion-col {
+      align-items: flex-end;
+    }
+  }
+  ion-col {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    div {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 21px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+}

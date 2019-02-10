@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align: center">RANKINGS</ion-title>
+    <ion-buttons end>
+      <button *ngFor="let version of bible_versions" ion-button [ngClass]="version.version_name == selected_version_name ? 'active': 'inactive'"
+        (click)="chooseVersion(version.version_name)" outline>
+        {{version.display_title}}
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <form (ngSubmit)="search(input_sentence)">
+        <ion-searchbar name="sentence" type="text" placeholder="Sentence" [(ngModel)]="input_sentence"></ion-searchbar>
+      </form>
+    </ion-item>
+
+  </ion-list>
+  <h5 *ngIf="time_taken">Time taken: {{time_taken}} seconds</h5>
+  <ion-card *ngFor="let result_item of results">
+
+    <ion-item>
+      <ion-avatar item-start>
+        <h1 style="font-size:30pt">{{result_item.ranking}}</h1>
+      </ion-avatar>
+      <b>{{result_item.verse_location}}</b>
+      <p style="white-space: pre-wrap;">
+        <i [innerHTML]="result_item.parsed_text[selected_version_name]"></i>
+      </p>
+      <ion-avatar item-end>
+        <button ion-button icon-only item-end clear color="dark" (click)="copyVerse(result_item)">
+          <ion-icon name="copy"></ion-icon>
+        </button>
+      </ion-avatar>
+    </ion-item>
+    <ion-row>
+      <ion-col col-12 class="total-score">
+        <h1 class="score">Score: {{result_item.total_score}}</h1>
+        <button style="float:right;" ion-button icon-only item-end clear color="dark" (click)="result_item.expand = !result_item.expand">
+          <ion-icon [name]="result_item.expand? 'arrow-dropup-circle' : 'arrow-dropdown-circle'"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="result_item.expand">
+      <ion-col col-2 class="baseword-breakdown" *ngFor="let breakdown_item of result_item.base_word_breakdowns">
+        <p class="baseword-breakdown-title" *ngIf="breakdown_item.best_match_word == null">{{breakdown_item.best_base_word.toUpperCase()}} (didn't match any keywords)
+        </p>
+        <p class="baseword-breakdown-title" *ngIf="!breakdown_item.best_match_word_parent && breakdown_item.best_match_word != null">{{breakdown_item.best_base_word.toUpperCase()}} => {{breakdown_item.best_match_word.toUpperCase()}}
+        </p>
+        <p class="baseword-breakdown-title" *ngIf="breakdown_item.best_match_word_parent">{{breakdown_item.best_base_word.toUpperCase()}} => {{breakdown_item.best_match_word_parent.toUpperCase()}} => {{breakdown_item.best_match_word.toUpperCase()}}
+        </p>
+        <table class="breakdown-table" *ngIf="breakdown_item.best_match_word != null">
+          <tr>
+            <th>Keyword</th>
+            <td>{{breakdown_item.best_match_word.toUpperCase()}}</td>
+          </tr>
+          <tr>
+            <th>Score</th>
+            <td>{{breakdown_item.rounded_score}}</td>
+          </tr>
+          <tr>
+            <th>Weight</th>
+            <td>{{breakdown_item.breakdown.weight}}</td>
+          </tr>
+          <tr>
+            <th>Decay</th>
+            <td>{{breakdown_item.breakdown.rounded_decay}}</td>
+          </tr>
+          <tr>
+            <th>TF</th>
+            <td>{{breakdown_item.breakdown.rounded_tf}}</td>
+          </tr>
+          <tr>
+            <th>RPAV</th>
+            <td>{{breakdown_item.breakdown.rounded_rpav}}</td>
+          </tr>
+          <tr>
+            <th>RPIV</th>
+            <td>{{breakdown_item.breakdown.rounded_rpiv}}</td>
+          </tr>
+        </table>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+</ion-content>

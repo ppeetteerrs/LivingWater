@@ -1,0 +1,7 @@
+apps:
+  - name: rethinkdb
+    script: launch_rethink.sh
+    cwd: ./backend/database/db
+  - name: living-water-backend
+    script: ./run.py
+    interpreter: /home/ppeetteerrs/anaconda3/envs/livingwater/bin/python

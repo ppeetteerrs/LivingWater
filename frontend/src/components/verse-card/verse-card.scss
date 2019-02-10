@@ -1,0 +1,22 @@
+verse-card {
+  ion-card.card {
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.25);
+    ion-card-header {
+      font-size: 14pt;
+      color: white;
+      font-weight: normal;
+      background-color: rgba(0, 0, 0, 0.15);
+      padding-left: 15px;
+    }
+    ion-card-content {
+      text-align: justify;
+      text-justify: inter-word;
+      color: rgba(230, 230, 230, 1);
+      width: 100%;
+      height: 100%;
+      font-size: 12pt;
+      padding: 15px !important;
+    }
+  }
+}

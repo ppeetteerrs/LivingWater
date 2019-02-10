@@ -1,0 +1,26 @@
+{
+  "extends": "airbnb-base",
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "comma-dangle": ["warn", "never"],
+    "quotes": ["warn", "single"],
+    "import/newline-after-import": ["error", {
+      "count": 1
+    }],
+    "import/first": "off",
+    "linebreak-style": "off",
+    "no-shadow": "off",
+    "no-console": "off",
+    "object-curly-spacing": ["warn", "never"],
+    "func-names": "off",
+    "prefer-arrow-callback": "off",
+    "no-nested-ternary": "off",
+    "no-param-reassign": "off",
+    "max-len": ["off"],
+    "global-require": "off",
+    "import/no-dynamic-require": "off",
+    "no-use-before-define": "off"
+  }
+}

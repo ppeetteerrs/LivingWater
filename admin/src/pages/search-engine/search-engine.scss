@@ -1,0 +1,71 @@
+page-search-engine {
+  .total-score {
+    background-color: rgba(128, 128, 128, 0.15);
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    margin: 0px;
+
+    .score {
+      font-size: 16px;
+      padding-left: 30px;
+      font-weight: bold;
+    }
+  }
+
+  .baseword-breakdown {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    .baseword-breakdown-title {
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .breakdown-table {
+      margin: 5px;
+      align-self: center;
+      table,
+      tr,
+      th,
+      td {
+        border: 2px solid rgb(161, 205, 255);
+
+        th,
+        td {
+          padding: 5px;
+          font-size: 14px;
+          text-align: center;
+
+          th {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  ion-navbar {
+    ion-buttons {
+      button {
+        &.active {
+          color: black;
+          font-weight: 1000;
+          border-color: black;
+          border-width: 5px;
+        }
+        &.inactive {
+          color: rgb(100, 100, 100);
+          font-weight: normal;
+          border-color: rgb(100, 100, 100);
+        }
+        &.activated {
+          background-color: transparent !important;
+        }
+      }
+    }
+  }
+}

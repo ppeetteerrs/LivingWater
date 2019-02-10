@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Occasions</ion-title>
+    <ion-buttons end>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <ion-searchbar [(ngModel)]="searchInput" (ionInput)="localSearch()" placeholder="Occasion"></ion-searchbar>
+  <ion-list>
+    <button ion-item *ngFor="let occasion of display_occasions" (click)="openOccasion(occasion)">
+      {{occasion}}
+    </button>
+  </ion-list>
+
+</ion-content>
