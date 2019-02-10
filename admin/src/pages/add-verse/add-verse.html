@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title style="text-align: center">Add a Verse</ion-title>
+    <ion-buttons end>
+      <button ion-button item-end clear color="secondary" (click)="addVerse()">
+        Add
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label floating>Location</ion-label>
+            <ion-input name="location" type="text" [(ngModel)]="verse_location"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <form (ngSubmit)="submitKeyword()">
+        <ion-col col-8>
+          <ion-item>
+            <ion-label floating>Keyword</ion-label>
+            <ion-input name="keyword" type="text" [(ngModel)]="keyword_input"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item>
+            <ion-label floating>Level</ion-label>
+            <ion-input name="level" type="number" [(ngModel)]="keyword_level_input"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-1>
+          <button item-end ion-button icon-only clear color="primary" type="submit">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </ion-col>
+      </form>
+    </ion-row>
+    <ion-row *ngFor="let keyword_item of keyword_items">
+      <ion-col col-8>
+        <div>{{keyword_item.word}}</div>
+      </ion-col>
+      <ion-col col-3>
+        <div>{{keyword_item.level}}</div>
+      </ion-col>
+      <ion-col col-1>
+        <button item-end ion-button icon-only clear color="danger" (click)="deleteItem(keyword_item)">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

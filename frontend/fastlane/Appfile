@@ -1,0 +1,9 @@
+# iOS
+app_identifier ENV["CUSTOM_APP_ID"] # The bundle identifier of your app
+apple_id ENV["USERNAME"] # Your Apple ID Email address
+team_id ENV["CUSTOM_TEAM_ID"]  # Developer Portal Team ID
+# itc_team_id "12345678" # Your iTunes Connect Team ID
+
+# Android
+json_key_file "/Users/ppeetteerrs/Desktop/Projects/LivingWater/Frontend/fastlane/secret/google_service_account.json"
+package_name ENV["APP_ID"]

@@ -1,0 +1,17 @@
+page-verse-list {
+  button {
+    &.active {
+      color: whitesmoke;
+      font-weight: 1000;
+      border-color: whitesmoke;
+    }
+    &.inactive {
+      color: rgba(255,255,255,0.5);
+      font-weight: normal;
+      border-color: rgba(255,255,255,0.5);
+    }
+    &.activated {
+      background-color: transparent !important;
+    }
+  }
+}

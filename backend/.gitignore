@@ -1,0 +1,7 @@
+backend/database/db/rethinkdb_data
+backend/database/db/*.db
+assets/*
+.ipynb_checkpoints
+.idea
+**/**/__pycache__
+.env

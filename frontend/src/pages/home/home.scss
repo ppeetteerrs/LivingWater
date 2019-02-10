@@ -1,0 +1,86 @@
+page-home {
+  ion-content {
+    .scroll-content {
+      background: none;
+    }
+  }
+
+  ion-slides.carousel {
+    height: 40%;
+    div.slide-zoom {
+      height: inherit;
+      div.carousel-image {
+        height: inherit;
+      }
+    }
+  }
+/*
+  div.welcome-message {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: "Ubuntu";
+    font-size: 40pt;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+  }
+  */
+
+  ion-grid {
+    height: 60%;
+    padding: 0px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    ion-row {
+      flex: 1;
+      width: 100%;
+      & > ion-col {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        flex-direction: column;
+        height: inherit;
+        width: 100%;
+        padding: 0px !important;
+
+        &.home-button {
+          &.topics {
+            background-color: color($colors, topics);
+          }
+          &.occasions {
+            background-color: color($colors, occasions);
+          }
+          &.search {
+            background-color: color($colors, search);
+          }
+          div {
+            &:active {
+              opacity: 0.5;
+            }
+            color: rgb(50,50,50);
+            margin: auto;
+            ion-icon {
+              flex-basis: 100%;
+              color: inherit;
+              font-size: 80px;
+            }
+            p {
+              color: inherit;
+              font-size: 25px;
+              font-weight: bold;
+              margin: 0%;
+            }
+          }
+        }
+        
+      }
+    }
+  }
+}

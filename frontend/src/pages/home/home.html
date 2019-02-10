@@ -1,0 +1,77 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-bounce>
+
+  <ion-slides class="carousel" autoplay=2000 loop pager speed=600>
+    <ion-slide *ngFor="let image_index of image_indices">
+      <div [ngStyle]="{'background': getImageStyleURL(image_index), 'background-size': 'cover','background-repeat': 'no-repeat', 'background-position': 'center'}"
+        class="carousel-image"></div>
+    </ion-slide>
+  </ion-slides>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="home-button search" (click)="goto('SearchPage')">
+        <div>
+          <ion-icon name="search"></ion-icon>
+          <p>keyword search</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="home-button topics" (click)="goto('TopicsPage')">
+        <div>
+          <ion-icon name="leaf"></ion-icon>
+          <p>topics</p>
+        </div>
+      </ion-col>
+      <ion-col class="home-button occasions" (click)="goto('OccasionsPage')">
+        <div>
+          <ion-icon name="book"></ion-icon>
+          <p>occasions</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--
+  <div class="welcome-message">
+    <p>Welcome to Living Water!</p>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="home-button search" (click)="goto('SearchPage')">
+        <div>
+          <ion-icon name="search"></ion-icon>
+          <p>search</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="home-button topics" (click)="goto('TopicsPage')">
+        <div>
+          <ion-icon name="leaf"></ion-icon>
+          <p>topics</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col class="home-button occasions" (click)="goto('OccasionsPage')">
+          <div>
+            <ion-icon name="book"></ion-icon>
+            <p>occasions</p>
+          </div>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+-->
+</ion-content>

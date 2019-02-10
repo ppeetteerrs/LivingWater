@@ -1,0 +1,4 @@
+scheme ENV["APP_NAME"] # Scheme of your native app, just the Name from config.xml
+project "platforms/ios/"+ENV["APP_NAME"]+".xcodeproj" # Should be the path to the iOS project
+output_directory "./build" # Where the app will be build to
+output_name ENV["APP_NAME"] # Final output for the IPA

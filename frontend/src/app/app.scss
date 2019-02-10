@@ -1,0 +1,92 @@
+// http://ionicframework.com/docs/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+ion-menu {
+  font-family: "Open Sans" !important;
+  .scroll-content {
+    background: url("../assets/imgs/menu/bg.jpg") no-repeat;
+    background-size: cover;
+    .list-ios .item-block .item-inner {
+      background: none !important;
+      padding: 0px !important;
+    }
+    img {
+      width: 100%;
+      padding: 30px 5% 10px 5%;
+    }
+    button {
+      background-color: transparent;
+      padding-left: 30px !important;
+      border: none !important;
+      line-height: 100%;
+      & ion-label.label {
+        margin: 0px;
+        ion-icon {
+          line-height: 100%;
+        }
+      }
+      &.activated {
+        background-color: inherit;
+        opacity: 0.3;
+      }
+      .item-inner {
+        border: 0px !important;
+        color: white;
+      }
+      ion-list {
+        border: 0px !important;
+      }
+    }
+  }
+  @media (max-width: 340px) {
+    .menu-inner {
+      button {
+        padding-left: 20px !important;
+      }
+    }
+  }
+}
+
+ion-nav {
+  .ion-page {
+    background: url("../assets/imgs/nav/bg.jpg") center no-repeat;
+    background-size: cover;
+    .scroll-content {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+    ion-content {
+      background-color: transparent !important;
+      ion-searchbar {
+        border: none;
+        background: none;
+      }
+    }
+  }
+  ion-header {
+    .toolbar-background {
+      background-color: transparent;
+      border: none !important;
+    }
+    .toolbar-title {
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-family: "Open Sans";
+    }
+    button.bar-button-menutoggle,
+    button.back-button {
+      color: white;
+    }
+  }
+}

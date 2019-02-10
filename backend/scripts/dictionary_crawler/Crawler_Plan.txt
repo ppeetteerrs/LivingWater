@@ -1,0 +1,18 @@
+database.database.Connection
+    Roles:
+    Creates Engine, Defines Mapping Classes, Checks If Record Exists, Modify Database
+    Useful Functions:
+    setup()
+
+crawler.crawler.Crawler
+    Roles:
+    Parse webpages for each word
+    Useful Functions:
+    class: setup(word_list_to_be_crawled)
+    instance: run()
+
+crawler.middleman.MiddleMan
+    Roles:
+    Centralized Module for Making Changes to Database
+    Useful Functions:
+    class: setup(Database_Connection), update(crawler_id, list1, list2, list3)

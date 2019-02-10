@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Search</ion-title>
+    <ion-buttons end>
+      <button *ngFor="let version of bible_versions" ion-button [ngClass]="version.version_name == selected_version_name ? 'active': 'inactive'" (click)="chooseVersion(version.version_name)" outline>
+        {{version.display_title}}
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <form (ngSubmit)="search(input_sentence, true)">
+    <ion-searchbar type="text" placeholder="Input Keywords" [(ngModel)]="input_sentence" name="sentence" showCancelButton></ion-searchbar>
+  </form>
+  <ion-card *ngFor="let result_item of results" class="result-card">
+    <ion-row class="result-row header">
+      <ion-col col-2 class="result-col">
+        <div class="result-container">
+          <h1 class="result-ranking">{{result_item.ranking}}</h1>
+        </div>
+      </ion-col>
+      <ion-col col-8 class="result-col">
+        <p class="result-location">{{result_item.verse_location.replace(result_item.verse_book, result_item.book_titles[selected_version_name])}}</p>
+      </ion-col>
+      <ion-col col-1 class="result-col icon">
+        <div class="result-container">
+          <ion-icon name="star-outline" class="action-buttons"></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col col-1 class="result-col icon">
+        <button ion-button icon-only clear color="dark" (click)="copyVerse(result_item)">
+          <ion-icon name="copy" class="action-buttons"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="result-row">
+      <ion-col col-12 class="result-col">
+        <div class="result-text" [innerHTML]="result_item.parsed_text[selected_version_name]">
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,106 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title style="text-align: center">DICTIONARY
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only item-end clear color="primary" (click)="addWord()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <form (ngSubmit)="search(input_word)">
+        <ion-searchbar name="sentence" type="text" placeholder="Root Word (only first word is considered)" [(ngModel)]="input_word"></ion-searchbar>
+      </form>
+    </ion-item>
+
+  </ion-list>
+  <ion-grid *ngIf="synonyms.length > 0">
+    <ion-row class="title-row">
+      <ion-col>
+        <div>
+          <b>{{current_word}}</b>
+          <button ion-button icon-only item-end clear color="danger" (click)="deleteWord()">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="level-row">
+      <ion-col>
+        <div>
+          <b>Relevance 3</b>
+          <button ion-button icon-only item-end clear color="primary" (click)="addSynonym(3)">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <b>Relevance 2</b>
+          <button ion-button icon-only item-end clear color="primary" (click)="addSynonym(2)">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <b>Relevance 1</b>
+          <button ion-button icon-only item-end clear color="primary" (click)="addSynonym(1)">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <b>Related Words (Relevance 2.7)</b>
+          <button ion-button icon-only item-end clear color="primary" (click)="addRelation()">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="synonyms-row">
+      <ion-col>
+        <div *ngFor="let synonym of synonyms[0]">
+          <i>{{synonym[0]}}</i>
+          <button ion-button icon-only item-end clear color="danger" (click)="removeSynonym(synonym[0])">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div *ngFor="let synonym of synonyms[1]">
+          <i>{{synonym[0]}}</i>
+          <button ion-button icon-only item-end clear color="danger" (click)="removeSynonym(synonym[0])">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div *ngFor="let synonym of synonyms[2]">
+          <i>{{synonym[0]}}</i>
+          <button ion-button icon-only item-end clear color="danger" (click)="removeSynonym(synonym[0])">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div *ngFor="let related_word of synonyms[3]">
+          <i>{{related_word[0]}}</i>
+          <button ion-button icon-only item-end clear color="danger" (click)="removeRelation(related_word[0])">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

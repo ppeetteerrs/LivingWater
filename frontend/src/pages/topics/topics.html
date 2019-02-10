@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Topics</ion-title>
+    <ion-buttons end>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <ion-searchbar [(ngModel)]="searchInput" (ionInput)="localSearch()" placeholder="Topic"></ion-searchbar>
+  <ion-list>
+    <button ion-item *ngFor="let topic of display_topics" (click)="openTopic(topic)">
+      {{topic}}
+    </button>
+  </ion-list>
+
+</ion-content>

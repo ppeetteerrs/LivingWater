@@ -1,0 +1,59 @@
+page-dictionary {
+  ion-col {
+    border: solid 3px black;
+    text-align: center;
+  }
+
+  ion-row {
+    justify-content: center;
+  }
+  .level-row {
+    ion-col {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      div {
+        font-size: 18pt;
+        align-items: center;
+        display: flex;
+      }
+    }
+  }
+
+  .synonyms-row > ion-col {
+    font-size: 16pt;
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    div {
+      display: flex;
+      align-items: center;
+      i {
+        vertical-align: baseline;
+      }
+      button {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .title-row > ion-col {
+    font-size: 22pt;
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    div {
+      display: flex;
+      align-items: center;
+      b {
+        vertical-align: baseline;
+      }
+      button {
+        vertical-align: middle;
+      }
+    }
+  }
+}
